@@ -12,10 +12,10 @@ This project combines **YOLOv2**([reference](https://arxiv.org/abs/1506.02640)) 
 
 ## Steps
 1. Install requirements and activate virtual environment 
-  pip -v install virtualenv
-  virtualenv -p python2 yolo_env
-  source yolo_env/bin/activate
-  pip install scipy==1.2.2 matplotlib tensorflow-gpu==1.15.0 opencv-python==4.2.0.32 Pillow tf-object-detection;
+    pip -v install virtualenv
+    virtualenv -p python2 yolo_env
+    source yolo_env/bin/activate
+    pip install scipy==1.2.2 matplotlib tensorflow-gpu==1.15.0 opencv-python==4.2.0.32 Pillow tf-object-detection;
 3. `make` the project;
 4. Download `yolo.weights` and `tiny-yolo.weights` by running: `wget https://pjreddie.com/media/files/yolo.weights` and `wget https://pjreddie.com/media/files/yolov3-tiny.weights`;
 5. Copy a video file to the video folder, for example, `input.mp4`;
