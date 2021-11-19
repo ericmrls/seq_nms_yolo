@@ -1,6 +1,6 @@
 # Seq_nms_YOLO
 
-#### Membres: Yunyun SUN, Yutong YAN, Sixiang XU, Heng ZHANG
+#### Authors: Yunyun SUN, Yutong YAN, Sixiang XU, Heng ZHANG
 
 ---
 
@@ -10,20 +10,23 @@
 
 This project combines **YOLOv2**([reference](https://arxiv.org/abs/1506.02640)) and **seq-nms**([reference](https://arxiv.org/abs/1602.08465)) to realise **real time video detection**.
 
-## Steps
+## Set-up
 1. Install requirements and activate virtual environment:
-    `pip -v install virtualenv;
-    virtualenv -p python2 yolo_env;
-    source yolo_env/bin/activate;
-    pip install scipy==1.2.2 matplotlib tensorflow-gpu==1.15.0 opencv-python==4.2.0.32 Pillow tf-object-detection`;
-3. `make` the project;
-4. Download `yolo.weights` and `tiny-yolo.weights` by running: `wget https://pjreddie.com/media/files/yolo.weights` and `wget https://pjreddie.com/media/files/yolov3-tiny.weights`;
-5. Copy a video file to the video folder, for example, `input.mp4`;
-6. In the video folder, run `python video2img.py -i input.mp4` and then `python get_pkllist.py`;
-7. Return to root floder and run `python yolo_seqnms.py` to generate output images in `video/output`;
-8. If you want to reconstruct a video from these output images, you can go to the video folder and run `python img2video.py -i output`
+    * Install `venv` if needed: `pip -v install virtualenv`
+    * Create a new Python 2 virtual environment: `virtualenv -p python2 yolo_env`
+    * Activate this virtual environment: `source yolo_env/bin/activate`
+    * Install requirements in this virtual environment: `pip install scipy==1.2.2 matplotlib tensorflow-gpu==1.15.0 opencv-python==4.2.0.32 Pillow tf-object-detection`
+2. `make` the project. The Makefile is ready to use CUDA 10.1 to take advantage of the GPU.
+3. Download `yolo.weights` running: `wget https://pjreddie.com/media/files/yolo.weights` 
+4. You can download `tiny-yolo.weights` as well: `wget https://pjreddie.com/media/files/yolov2-tiny.weights`
 
-And you will see detection results in `video/output`
+## Execution
+1. Copy a video file to the video folder, for example, `input.mp4`
+2. In the video folder, run `python video2img.py -i input.mp4` and then `python get_pkllist.py`
+3. Return to root floder and run `python yolo_seqnms.py` to generate output images in `video/output`
+4. If you want to reconstruct a video from these output images, you can go to the video folder and run `python img2video.py -i output`
+
+Detection results will be saved to in `video/output`.
 
 ## Reference
 
