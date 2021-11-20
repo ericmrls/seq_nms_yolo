@@ -199,27 +199,16 @@ def deleteLink(dets,links, rootindex, maxpath,thesh):
                     if delete_ind in priorbox:
                         priorbox.remove(delete_ind)
 
-def dsnms(res):
+def dsnms(res, use_seqnms=True):
     dets=createInputs(res)
     links=createLinks(dets)
-    maxPath(dets,links)
+    if use_seqnms:
+        maxPath(dets,links)
     NMS(dets)
     boxes=[[] for i in dets[0]]
     classes=[[] for i in dets[0]]
     scores=[[] for i in dets[0]]
-    #for max_path in max_paths:
-    #    cls_ind = max_path[0]
-    #    rootindex = max_path[1]
-    #    maxpath = max_path[2]
-    #    for i,box_ind in enumerate(maxpath):
-    #        ymin = dets[cls_ind][rootindex+i][box_ind][1]
-    #        xmin = dets[cls_ind][rootindex+i][box_ind][0]
-    #        ymax = dets[cls_ind][rootindex+i][box_ind][3]
-    #        xmax = dets[cls_ind][rootindex+i][box_ind][2]
-    #        score = dets[cls_ind][rootindex+i][box_ind][4]
-    #        boxes[rootindex+i].append(np.array([ymin, xmin, ymax, xmax]))
-    #        classes[rootindex+i].append(cls_id+1)
-    #        scores[rootindex+i].append(score)
+    
     for cls_id, det_cls in enumerate(dets):
         for frame_id, frame in enumerate(det_cls):
             for box_id, box in enumerate(frame):
@@ -254,6 +243,9 @@ def get_labeled_image(image_path, path_to_labels, num_classes, boxes, classes, s
     return image_process
 
 if __name__ == "__main__":
+
+    use_seqnms = True
+
     # load image
     load_begin=time.time()
     pkllistfile=open(os.path.join('video', 'pkllist.txt'))
@@ -271,7 +263,7 @@ if __name__ == "__main__":
 
     # nms
     nms_begin=time.time()
-    boxes, classes, scores = dsnms(res)
+    boxes, classes, scores = dsnms(res, use_seqnms)
     nms_end=time.time()
     print 'total nms: {:.4f}s'.format(nms_end - nms_begin)
 
